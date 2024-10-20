@@ -3348,7 +3348,8 @@ gengtype$(exeext) : gengtype.o gengtype-lex.o gengtype-parse.o \
 # Rule for the generator programs:
 $(genprog:%=build/gen%$(build_exeext)): build/gen%$(build_exeext): build/gen%.o $(BUILD_LIBDEPS)
 	+$(LINKER_FOR_BUILD) $(BUILD_LINKERFLAGS) $(BUILD_LDFLAGS) -o $@ \
-	    $(filter-out $(BUILD_LIBDEPS), $^) $(BUILD_LIBS)
+	    $(filter-out $(BUILD_LIBDEPS), $^) $(BUILD_LIBS) \
+	    $(LIBINTL) $(LIBICONV)
 
 omp-general.o: omp-device-properties.h
 
