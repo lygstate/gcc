@@ -1751,8 +1751,11 @@ print_filtered_help (unsigned int include_flags,
 		      sizeof new_help - strlen (new_help),
 		      "  %s", _(use_diagnosed_msg));
 	  else
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 	    snprintf (new_help, sizeof new_help,
 		      "%s  %s", help, _(use_diagnosed_msg));
+#pragma GCC diagnostic pop
 
 	  help = new_help;
 	}
