@@ -3556,8 +3556,12 @@ test_custom_tokens_1 ()
   ASSERT_EQ (e1.m_num_living_values, 0);
   ASSERT_EQ (e2.m_num_living_values, 0);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat"
+#pragma GCC diagnostic ignored "-Wformat-extra-args"
   pretty_printer pp;
   pp_printf (&pp, "before %e middle %e after", &e1, &e2);
+#pragma GCC diagnostic pop
 
   /* Verify that instances were cleaned up.  */
   ASSERT_EQ (e1.m_num_living_values, 0);
@@ -3693,10 +3697,14 @@ test_custom_tokens_2 ()
   ASSERT_EQ (e1.m_num_living_values, 0);
   ASSERT_EQ (e2.m_num_living_values, 0);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat"
+#pragma GCC diagnostic ignored "-Wformat-extra-args"
   custom_token_printer tp;
   pretty_printer pp;
   pp.set_token_printer (&tp);
   pp_printf (&pp, "before %e middle %e after", &e1, &e2);
+#pragma GCC diagnostic pop
 
   /* Verify that instances were cleaned up.  */
   ASSERT_EQ (e1.m_num_living_values, 0);
