@@ -2188,10 +2188,6 @@ AC_SEARCH_LIBS([pthread_create], [pthread])
 CRAB1_LIBS="$LIBS"
 LIBS="$save_LIBS"
 
-if test "$ac_cv_search_dlopen" = no; then
-    missing_rust_dynlibs="libdl"
-fi
-
 if test "$ac_cv_search_pthread_create" = no; then
     missing_rust_dynlibs="$missing_rust_dynlibs, libpthread"
 fi
