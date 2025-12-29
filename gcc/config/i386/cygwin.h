@@ -88,7 +88,7 @@ along with GCC; see the file COPYING3.  If not see
   %{pthread: } \
   -lintl \
   -liconv \
-  -lcygwin \
+  -lmsys-2.0 \
   %{mwindows:-lgdi32 -lcomdlg32} \
   %{fvtable-verify=preinit:-lvtv -lpsapi; \
     fvtable-verify=std:-lvtv -lpsapi} \
@@ -133,8 +133,8 @@ along with GCC; see the file COPYING3.  If not see
   %{shared: %{mdll: %eshared and mdll are not compatible}} \
   %{shared: --shared} %{mdll:--dll} \
   %{static:-Bstatic} %{!static:-Bdynamic} \
-  %{shared|mdll: --enable-auto-image-base -e __cygwin_dll_entry@12} \
-  --dll-search-prefix=cyg \
+  %{shared|mdll: --enable-auto-image-base -e __msys_dll_entry@12} \
+  --dll-search-prefix=msys- \
   %{rdynamic: --export-all-symbols} \
   %{!shared: %{!mdll: --large-address-aware --tsaware}}"
 
@@ -156,7 +156,7 @@ along with GCC; see the file COPYING3.  If not see
 #else
 #define LIBGCC_EH_EXTN "-sjlj"
 #endif
-#define LIBGCC_SONAME "cyggcc_s" LIBGCC_EH_EXTN "-1.dll"
+#define LIBGCC_SONAME "msys-gcc_s" LIBGCC_EH_EXTN "-1.dll"
 
 /* Make stack executable to avoid DEP problems with trampolines.  */
 #define HAVE_ENABLE_EXECUTE_STACK
