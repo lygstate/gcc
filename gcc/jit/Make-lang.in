@@ -46,7 +46,7 @@ LIBGCCJIT_RELEASE_NUM = 1
 
 SHARED_PFX=lib
 ifneq (,$(filter %cygwin,$(target)))
-SHARED_PFX=cyg
+SHARED_PFX=msys-
 endif
 
 ifneq (,$(filter %-mingw% %-cygwin,$(target)))
