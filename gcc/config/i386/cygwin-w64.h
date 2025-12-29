@@ -45,8 +45,8 @@ along with GCC; see the file COPYING3.  If not see
 
 #undef SUB_LINK_ENTRY32
 #undef SUB_LINK_ENTRY64
-#define SUB_LINK_ENTRY32 "-e __cygwin_dll_entry@12"
-#define SUB_LINK_ENTRY64 "-e _cygwin_dll_entry"
+#define SUB_LINK_ENTRY32 "-e __msys_dll_entry@12"
+#define SUB_LINK_ENTRY64 "-e _msys_dll_entry"
 
 #undef SUB_LINK_SPEC
 #undef SUB_LINK_ENTRY
@@ -66,7 +66,7 @@ along with GCC; see the file COPYING3.  If not see
   %{static:-Bstatic} %{!static:-Bdynamic} \
   %{shared|mdll: " SUB_LINK_ENTRY " --enable-auto-image-base} \
   %(shared_libgcc_undefs) \
-  --dll-search-prefix=cyg \
+  --dll-search-prefix=msys- \
   %{rdynamic: --export-all-symbols} \
   %{!shared: %{!mdll: %{" SPEC_32 ":--large-address-aware} --tsaware}}"
 
@@ -82,4 +82,4 @@ along with GCC; see the file COPYING3.  If not see
 #define PTRDIFF_TYPE (TARGET_64BIT ? "long int" : "int")
 
 #undef LIBGCC_SONAME
-#define LIBGCC_SONAME "cyggcc_s-seh-1.dll"
+#define LIBGCC_SONAME "msys-gcc_s-seh-1.dll"
