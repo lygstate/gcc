@@ -22,6 +22,7 @@ along with GCC; see the file COPYING3.  If not see
   do								\
     {								\
       builtin_define ("__CYGWIN__");				\
+      builtin_define ("__MSYS__");				\
       if (!TARGET_64BIT)					\
 	builtin_define ("__CYGWIN32__");			\
       builtin_define_std ("unix");				\
