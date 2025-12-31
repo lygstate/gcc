@@ -24,6 +24,8 @@ along with GCC; see the file COPYING3.  If not see
 #undef ASM_SPEC
 #define ASM_SPEC "%{m32:--32} %{m64:--64}"
 
+#define CYGWIN_INCLUDED
+
 /* To implement C++ function replacement we always wrap the cxx
    malloc-like operators.  See N2800 #17.6.4.6 [replacement.functions] */
 #undef CXX_WRAP_SPEC_LIST

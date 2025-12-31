@@ -1211,7 +1211,8 @@ static const char *link_gcc_c_sequence_spec = LINK_GCC_C_SEQUENCE_SPEC;
 static const char *link_ssp_spec = LINK_SSP_SPEC;
 static const char *asm_spec = ASM_SPEC;
 static const char *asm_final_spec = ASM_FINAL_SPEC;
-static const char *link_spec = LINK_SPEC;
+char linke_spec_body[] = LINK_SPEC;
+static const char *link_spec = linke_spec_body;
 static const char *lib_spec = LIB_SPEC;
 static const char *link_gomp_spec = "";
 static const char *libgcc_spec = LIBGCC_SPEC;
@@ -8273,12 +8274,38 @@ driver::~driver ()
   XDELETEVEC (decoded_options);
 }
 
+char *strreplace(char *s, const char *s1, const char *s2) {
+    char *p = strstr(s, s1);
+    if (p != NULL) {
+        size_t len1 = strlen(s1);
+        size_t len2 = strlen(s2);
+        if (len1 != len2)
+            memmove(p + len2, p + len1, strlen(p + len1) + 1);
+        memcpy(p, s2, len2);
+    }
+    return s;
+}
+
+// Function to check if a file exists
+bool file_exists(const char *filename) {
+    struct stat buffer;
+    // stat() returns 0 on success (file exists), -1 otherwise
+    return (stat(filename, &buffer) == 0);
+}
+
 /* driver::main is implemented as a series of driver:: method calls.  */
 
 int
 driver::main (int argc, char **argv)
 {
   bool early_exit;
+
+#ifdef CYGWIN_INCLUDED
+  if (!file_exists("/usr/bin/cygwin1.dll")) {
+    strreplace(linke_spec_body, "cygwin_", "msys_");
+    strreplace(linke_spec_body, "cygwin_", "msys_");
+  }
+#endif
 
   set_progname (argv[0]);
   expand_at_files (&argc, &argv);
