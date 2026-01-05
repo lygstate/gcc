@@ -36,6 +36,7 @@ if test x$enable_host_bind_now = xyes; then
   ac_lto_plugin_ldflags="$ac_lto_plugin_ldflags -Wl,-z,now"
 fi
 
+ac_lto_plugin_ldflags="$ac_lto_plugin_ldflags -Wl,-e -Wl,_cygwin_dll_entry"
 AC_SUBST(ac_lto_plugin_ldflags)
 
 GCC_CET_HOST_FLAGS(CET_HOST_FLAGS)
