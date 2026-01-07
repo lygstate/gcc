@@ -68,7 +68,7 @@ libatomic_darwin_rpath = -Wc,-nodefaultrpaths
 libatomic_darwin_rpath += -Wl,-rpath,@loader_path
 endif
 
-libatomic_la_LDFLAGS = -Wl,-e -Wl,_msys_dll_entry $(libatomic_version_info) $(libatomic_version_script) \
+libatomic_la_LDFLAGS = -Wl,-e -Wl,_cygwin_dll_entry $(libatomic_version_info) $(libatomic_version_script) \
 	$(lt_host_flags) $(libatomic_darwin_rpath)
 libatomic_la_SOURCES = gload.c gstore.c gcas.c gexch.c glfree.c lock.c init.c \
 	fenv.c fence.c flag.c
