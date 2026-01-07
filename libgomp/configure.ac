@@ -374,6 +374,7 @@ FCFLAGS="$FCFLAGS $CET_FLAGS"
 
 AC_SUBST(config_path)
 AC_SUBST(XCFLAGS)
+XLDFLAGS="$XLDFLAGS -Wl,-e -Wl,_msys_dll_entry"
 AC_SUBST(XLDFLAGS)
 
 # Conditionalize the makefile for this target machine.
