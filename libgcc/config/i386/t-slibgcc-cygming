@@ -39,6 +39,7 @@ SHLIB_LINK = $(LN_S) -f $(SHLIB_MAP) $(SHLIB_MAP).def && \
 	-shared -nodefaultlibs \
 	$(SHLIB_MAP).def \
 	-Wl,--out-implib,$(SHLIB_DIR)/$(SHLIB_IMPLIB).tmp \
+	-Wl,-e -Wl,_cygwin_dll_entry \
 	-o $(SHLIB_DIR)/$(SHLIB_SONAME).tmp @multilib_flags@ \
 	$(SHLIB_OBJS) ${SHLIB_PTHREAD_LDFLAG} $(SHLIB_LC) \
 	$(SHLIB_MCFGTHREAD_LIBS) && \
